@@ -276,7 +276,7 @@ nav h1 a {
 }
 
 
-@media only  screen and (max-width: 773px) {
+@media only  screen and (max-width: 763px) {
   #restaurants-list li{
     width: auto;
   }
