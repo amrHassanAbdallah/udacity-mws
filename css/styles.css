@@ -283,6 +283,12 @@ nav h1 a {
   width: 50%;
 }
 
+.inside #footer {
+    width: 100vw;
+    box-sizing: content-box;
+    padding: 40px 0;
+}
+
 @media only  screen and (max-width: 763px) {
   body.inside{
     overflow-x: hidden;
@@ -301,7 +307,6 @@ nav h1 a {
   .inside #footer{
     width: 100vw;
     box-sizing: content-box;
-    padding: 40px 0;
   }
   #breadcrumb{
     width: 100%;
