@@ -314,4 +314,12 @@ nav h1 a {
     width: 100%;
   }
 
+    #restaurant-cuisine {
+        margin: auto;
+    }
+
+    #restaurant-container {
+        text-align: center;
+    }
+
 }
