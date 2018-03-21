@@ -12,12 +12,13 @@ self.addEventListener('install', function (event) {
                 'js/restaurant_info.js',
                 'img/',
                 'data/restaurants.json',
+                'https://',
             ]);
         })
     );
 });
 
-//Deleting old caches
+//Deleting old worker
 self.addEventListener('activate', function (event) {
     console.log(event, 'activate');
     event.waitUntil(
@@ -33,6 +34,7 @@ self.addEventListener('activate', function (event) {
     );
 });
 
+//fetching requests
 self.addEventListener('fetch', function (event) {
     console.log('fetch', event.request);
     // console.log(event.request);
