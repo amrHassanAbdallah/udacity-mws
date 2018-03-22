@@ -12,7 +12,6 @@ self.addEventListener('install', function (event) {
                 'js/restaurant_info.js',
                 'img/',
                 'data/restaurants.json',
-                'https://',
             ]);
         })
     );
@@ -36,8 +35,6 @@ self.addEventListener('activate', function (event) {
 
 //fetching requests
 self.addEventListener('fetch', function (event) {
-    console.log('fetch', event.request);
-    // console.log(event.request);
     event.respondWith(
         caches.match(event.request).then(function (response) {
             if (response) return response;
@@ -47,8 +44,6 @@ self.addEventListener('fetch', function (event) {
 });
 
 self.addEventListener('message', function (event) {
-    console.log(event, 'message', event.request);
-
     if (event.data.action === 'skipWaiting') {
         self.skipWaiting();
     }
