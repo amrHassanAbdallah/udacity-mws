@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <!-- Normalize.css for better cross-browser consistency -->
@@ -38,7 +38,7 @@
     <div id="restaurntWrapper">
       <!-- Beginning restaurant -->
       <section id="restaurant-container">
-        <h1 id="restaurant-name"></h1>
+          <h3 id="restaurant-name"></h3>
         <picture>
           <source id="source_big" media="(min-width: 1600px)" srcset="">
           <source id="source_med" media="(min-width: 850px)" srcset="">
@@ -74,7 +74,42 @@
   <script type="text/javascript" src="js/restaurant_info.js"></script>
   <!-- Google Maps -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByhN2rV2AWzNEfzR8W3Z5iXDi3achf1PA&libraries=places&callback=initMap"></script>
+  <script>
+      if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('./sw.js').then(function (reg) {
+              console.log('Service worker registered.');
 
+              if (!navigator.serviceWorker.controller) {
+                  return;
+              }
+
+              if (reg.waiting) {
+                  navigator.serviceWorker.controller.postMessage({action: 'skipWaiting'});
+              }
+
+              if (reg.installing) {
+                  navigator.serviceWorker.addEventListener('statechange', function () {
+                      if (navigator.serviceWorker.controller.state == 'installed') {
+                          navigator.serviceWorker.controller.postMessage({action: 'skipWaiting'});
+                      }
+                  });
+              }
+
+              reg.addEventListener('updatefound', function () {
+                  navigator.serviceWorker.addEventListener('statechange', function () {
+                      if (navigator.serviceWorker.controller.state == 'installed') {
+                          navigator.serviceWorker.controller.postMessage({action: 'skipWaiting'});
+                      }
+                  });
+              });
+
+          }).catch(function () {
+              console.log('Service worker registration failed');
+          });
+      } else {
+          console.log('Service workers are not supported.');
+      }
+  </script>
 
 </body>
 
