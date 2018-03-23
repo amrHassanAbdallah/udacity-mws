@@ -15,14 +15,15 @@
   <!-- Beginning header -->
   <header>
     <!-- Beginning nav -->
-      <nav role="navigation">
+    <nav role="navigation" aria-label="Breadcrumb">
       <h1><a href="/">Restaurant Reviews</a></h1>
+      <!-- Beginning breadcrumb -->
+      <ul id="breadcrumb" style="text-align: left;position: fixed">
+        <li><a href="/" role="link">Home</a></li>
+      </ul>
+      <!-- End breadcrumb -->
     </nav>
-    <!-- Beginning breadcrumb -->
-      <ul id="breadcrumb" aria-label="Breadcrumb">
-          <li><a href="/" role="link" aria-current="Page">Home</a></li>
-    </ul>
-    <!-- End breadcrumb -->
+
     <!-- End nav -->
   </header>
   <!-- End header -->
@@ -31,7 +32,7 @@
   <main id="maincontent">
     <!-- Beginning map -->
     <section id="map-container">
-      <div id="map"></div>
+      <div id="map" role="application"></div>
     </section>
     <!-- End map -->
 
