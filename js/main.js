@@ -5,44 +5,6 @@ var map;
 var markers = [];
 
 
-/**
- * setting the service worker
- */
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js').then(function (reg) {
-        console.log('Service worker registered.');
-
-        if (!navigator.serviceWorker.controller) {
-            return;
-        }
-
-        if (reg.waiting) {
-            navigator.serviceWorker.controller.postMessage({action: 'skipWaiting'});
-        }
-
-        if (reg.installing) {
-            navigator.serviceWorker.addEventListener('statechange', function () {
-                if (navigator.serviceWorker.controller.state == 'installed') {
-                    navigator.serviceWorker.controller.postMessage({action: 'skipWaiting'});
-                }
-            });
-        }
-
-        reg.addEventListener('updatefound', function () {
-            navigator.serviceWorker.addEventListener('statechange', function () {
-                if (navigator.serviceWorker.controller.state == 'installed') {
-                    navigator.serviceWorker.controller.postMessage({action: 'skipWaiting'});
-                }
-            });
-        });
-
-    }).catch(function () {
-        console.log('Service worker registration failed');
-    });
-} else {
-    console.log('Service workers are not supported.');
-}
-
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -183,6 +145,7 @@ createRestaurantHTML = (restaurant) => {
     const sourceS = document.createElement('source');
     image.className = 'restaurant-img';
     image.src = DBHelper.imageUrlForRestaurant(restaurant);
+    image.alt = `${restaurant.name} restaurant's photo `;
     sourceS.media = '(min-width: 800px)';
     sourceM.media = '(min-width: 460px)';
     var imageName = (DBHelper.imageUrlForRestaurant(restaurant)).split('.jpg');

@@ -60,7 +60,8 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
     const sour_med = document.getElementById('source_med');
     const sour_small = document.getElementById('source_small');
     image.className = 'restaurant-img';
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
+    image.src = DBHelper.imageUrlForRestaurant(restaurant);
+    image.alt = `${restaurant.name} restaurant's photo `;
     var imageName = (image.src).split('.jpg');
     sour_big.srcset = `${imageName[0]}-800_large_1x.jpg`;
     sour_big.alt = `${restaurant.name}-800_large image`;
