@@ -1,4 +1,27 @@
 let staticCacheName = 'restaurant-static-v1';
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0/workbox-sw.js');
+if (workbox) {
+    console.log(`Yay! Workbox is loaded 🎉`);
+    workbox.routing.registerRoute(
+        // Cache image files
+        /.*\.(?:png|jpg|jpeg|svg|gif)/,
+        // Use the cache if it's available
+        workbox.strategies.cacheFirst({
+            // Use a custom cache name
+            cacheName: staticCacheName,
+            plugins: [
+                new workbox.expiration.Plugin({
+                    // Cache only 40 images
+                    maxEntries: 40,
+                    // Cache for a maximum of a week
+                    maxAgeSeconds: 7 * 24 * 60 * 60,
+                })
+            ],
+        })
+    );
+} else {
+    console.log(`Boo! Workbox didn't load 😬`);
+}
 self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(staticCacheName).then(function (cache) {
