@@ -9,23 +9,26 @@
 </head>
 
 <body>
-  <header>
-      <nav role="navigation">
-      <h1><a href="/">Restaurant Reviews</a></h1>
+<header role="banner">
+  <nav role="navigation" aria-label="Breadcrumb">
+    <h1><a href="/" aria-label="Link restaurant reviews">Restaurant Reviews</a></h1>
     </nav>
   </header>
 
   <main role="main" id="maincontent">
     <section id="map-container">
-        <div id="map" role="application"></div>
+      <div id="map" role="application"
+           aria-label="this is a map that shows all the locations for the available restaurants"></div>
     </section>
     <section>
       <div class="filter-options">
         <h2>Filter Results</h2>
-        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
+        <select id="neighborhoods-select" tabindex="1" aria-label="Select a Neighborhood" name="neighborhoods"
+                onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
         </select>
-        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
+        <select id="cuisines-select" tabindex="2" aria-label="Select a Cusisine" name="cuisines"
+                onchange="updateRestaurants()">
           <option value="all">All Cuisines</option>
         </select>
       </div>
