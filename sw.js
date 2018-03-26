@@ -19,6 +19,11 @@ if (workbox) {
             ],
         })
     );
+    workbox.routing.registerRoute(
+        new RegExp('^https://fonts.(?:googleapis|gstatic).com/(.*)'),
+        workbox.strategies.cacheFirst(),
+    );
+
 } else {
     console.log(`Boo! Workbox didn't load 😬`);
 }
@@ -33,7 +38,6 @@ self.addEventListener('install', function (event) {
                 'js/dbhelper.js',
                 'js/main.js',
                 'js/restaurant_info.js',
-                'data/restaurants.json',
             ]);
         })
     );
