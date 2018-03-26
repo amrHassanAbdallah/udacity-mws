@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-  <!-- Normalize.css for better cross-browser consistency -->
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
-  <!-- Main CSS file -->
-  <link rel="stylesheet" href="css/styles.css" type="text/css">
-  <title>Restaurant Info</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <link rel="stylesheet" href="css/style.min.css">
+  <meta name="theme-color" content="#317EFB"/>
+  <link rel="manifest" href="/manifest.json">
+  <title>Restaurant Reviews</title>
 </head>
+
 
 <body class="inside">
   <!-- Beginning header -->
@@ -29,7 +29,7 @@
   <!-- End header -->
 
   <!-- Beginning main -->
-  <main id="maincontent">
+  <main id="maincontent" role="main">
     <!-- Beginning map -->
     <section id="map-container">
       <div id="map" role="application"
@@ -60,8 +60,9 @@
   <!-- End main -->
 
   <!-- Beginning footer -->
-  <footer id="footer">
-    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+  <footer id="footer" role="contentinfo">
+    Copyright (c) 2017 <a href="/" role="link" aria-label="home page link"><strong>Restaurant Reviews</strong></a> All
+    Rights Reserved.
   </footer>
   <!-- End footer -->
 
