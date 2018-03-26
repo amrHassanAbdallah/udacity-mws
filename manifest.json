@@ -1,0 +1,20 @@
+{
+  "short_name": "Restaurant reviews",
+  "name": "This is an application to show all restaurant and there locations ,reviews",
+  "icons": [
+    {
+      "src": "61551_155090_food_restaurant_eat.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "launcher-icon-4x.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "61551_155091_food_restaurant_eat.png",
+  "display": "standalone",
+  "background_color": "#ffee00",
+  "theme_color": "#2196F3"
+}

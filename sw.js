@@ -38,6 +38,7 @@ self.addEventListener('install', function (event) {
                 'js/dbhelper.js',
                 'js/main.js',
                 'js/restaurant_info.js',
+                'index.html?launcher=true',
                 'http://localhost:1337/restaurants'
             ]);
         })
