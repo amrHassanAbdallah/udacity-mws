@@ -34,20 +34,9 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'img/',
-                    src: ['**/*.{png,jpg,gif}'],
+                    src: ['*.{png,jpg,gif}'],
                     dest: 'img/'
                 }]
-            }
-        },
-        uglify: {
-            dist: {
-                options: {
-                    sourceMap: true,
-                    banner: '/*! MyLib.js 1.0.0 | Aurelio De Rosa (@AurelioDeRosa) | MIT Licensed */'
-                },
-                files: {
-                    'js/output.min.js': ['dbhelper.js', 'js/commonScript.js'],
-                }
             }
         },
         cssmin: {
@@ -64,8 +53,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-responsive-images');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.registerTask('default', ['responsive_images', 'imagemin', 'uglify', 'cssmin']);
+    grunt.registerTask('default', ['imagemin', 'cssmin']);
 
 };

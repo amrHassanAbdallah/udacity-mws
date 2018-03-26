@@ -8,12 +8,12 @@
       "sizes": "128x128"
     },
     {
-      "src": "launcher-icon-4x.png",
+      "src": "61551_155091_food_restaurant_eat.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": "61551_155091_food_restaurant_eat.png",
+  "start_url": "index.html?launcher=true",
   "display": "standalone",
   "background_color": "#ffee00",
   "theme_color": "#2196F3"
