@@ -4,7 +4,7 @@ if (workbox) {
     console.log(`Yay! Workbox is loaded 🎉`);
     workbox.routing.registerRoute(
         // Cache image files
-        /.*\.(?:png|jpg|jpeg|svg|gif)/,
+        /.*\.(?:png|jpg|jpeg|svg|gif|webp)/,
         // Use the cache if it's available
         workbox.strategies.cacheFirst({
             // Use a custom cache name

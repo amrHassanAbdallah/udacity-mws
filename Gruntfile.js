@@ -48,12 +48,33 @@ module.exports = function (grunt) {
                     'css/style.min.css': ['css/**/*.css']
                 }
             }
+        },
+        cwebp: {
+            static: {
+                files: {
+                    'dist/img.webp': 'img/*.jpg',
+                }
+            },
+            dynamic: {
+                options: {
+                    q: 50
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'img/',
+                    src: ['**/*.{png,jpg,gif}'],
+                    dest: 'img/'
+                }]
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-responsive-images');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.registerTask('default', ['imagemin', 'cssmin']);
+    grunt.loadNpmTasks('grunt-cwebp');
+
+
+    grunt.registerTask('default', ['cwebp']);
 
 };

@@ -39,7 +39,7 @@ if ('serviceWorker' in navigator) {
 /**
  * Setting the images for different window sizes
  */
-setImagesForDifferentWindowSizes = (pictureTag, orignalImageUrl, pageName = 'home', imageExten2 = '.jpg') => {
+setImagesForDifferentWindowSizes = (pictureTag, orignalImageUrl, pageName = 'home', imageExten2 = '.webp') => {
     const availableWidthsForHome = ['-320x240_small'];
     const homeMediaWidth = ['(min-width: 460px)'];
     const availableWidthsForRestaurant = ['-800_large_1x', '-640_medium', '-320x240_small'];
@@ -73,3 +73,17 @@ createSourceTags = (pictureTag, imageName, imageExten, availableWidths = [], pag
 setImageAlt = (ImageTag, restaurantName) => {
     ImageTag.alt = `${restaurantName} restaurant's photo `;
 };
+
+/**
+ * setting up image location
+ */
+function setImageLocation(locationDB) {
+    return (locationDB != '/img/undefined') ? locationDB : '/img/default';
+}
+
+/**
+ * setting up image src
+ */
+function setImageSrc(image, location) {
+    image.src = location + '-640_medium.webp';
+}
