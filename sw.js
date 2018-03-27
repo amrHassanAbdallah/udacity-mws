@@ -23,7 +23,21 @@ if (workbox) {
         new RegExp('^https://fonts.(?:googleapis|gstatic).com/(.*)'),
         workbox.strategies.cacheFirst(),
     );
-
+    workbox.routing.registerRoute(
+        new RegExp('http://localhost:1337/restaurants'),
+        workbox.strategies.cacheFirst({
+            // Use a custom cache name
+            cacheName: 'restaurants',
+            plugins: [
+                new workbox.expiration.Plugin({
+                    // Cache only 60 Entries
+                    maxEntries: 60,
+                    // Cache for a maximum of a week
+                    maxAgeSeconds: 7 * 24 * 60 * 60,
+                })
+            ],
+        })
+    );
 } else {
     console.log(`Boo! Workbox didn't load 😬`);
 }
@@ -35,11 +49,11 @@ self.addEventListener('install', function (event) {
                 'index.html',
                 'restaurant.html',
                 'css/styles.css',
+                'css/style.min.css',
                 'js/dbhelper.js',
                 'js/main.js',
                 'js/restaurant_info.js',
                 'index.html?launcher=true',
-                'http://localhost:1337/restaurants'
             ]);
         })
     );

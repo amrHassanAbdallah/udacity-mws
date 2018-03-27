@@ -39,14 +39,14 @@ if ('serviceWorker' in navigator) {
 /**
  * Setting the images for different window sizes
  */
-setImagesForDifferentWindowSizes = (pictureTag, orignalImageUrl, pageName = 'home') => {
+setImagesForDifferentWindowSizes = (pictureTag, orignalImageUrl, pageName = 'home', imageExten2 = '.jpg') => {
     const availableWidthsForHome = ['-320x240_small'];
     const homeMediaWidth = ['(min-width: 460px)'];
     const availableWidthsForRestaurant = ['-800_large_1x', '-640_medium', '-320x240_small'];
     const restaurantMediaWidths = ['(min-width: 1600px)', '(min-width: 850px)', '(min-width: 460px)'];
     let availableWidths = pageName === 'home' ? availableWidthsForHome : availableWidthsForRestaurant;
     let pageMediaWidths = pageName === 'home' ? homeMediaWidth : restaurantMediaWidths;
-    const imageExten = '.jpg';
+    const imageExten = imageExten2;
     const imageName = (orignalImageUrl).split(imageExten);
     createSourceTags(pictureTag, imageName, imageExten, availableWidths, pageMediaWidths);
 

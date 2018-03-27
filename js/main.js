@@ -143,9 +143,10 @@ createRestaurantHTML = (restaurant) => {
     const image = document.createElement('img');
 
     image.className = 'restaurant-img';
-    image.src = DBHelper.imageUrlForRestaurant(restaurant) + '-640_medium.jpg';
+    imageLocation = (DBHelper.imageUrlForRestaurant(restaurant) != '/img/undefined') ? DBHelper.imageUrlForRestaurant(restaurant) : '/img/default';
+    image.src = imageLocation + '-640_medium.jpg';
     setImageAlt(image, restaurant.name);
-    setImagesForDifferentWindowSizes(picture, DBHelper.imageUrlForRestaurant(restaurant));
+    setImagesForDifferentWindowSizes(picture, imageLocation);
     picture.append(image);
     li.append(picture);
 
