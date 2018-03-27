@@ -327,21 +327,7 @@ nav h1 a {
 }
 
 @media only  screen and (max-width: 425px) {
-    nav ul#breadcrumb {
-        width: 100vw;
-
-    }
-
-    header, footer {
-        width: 100vw !important;
-
-    }
-
     #maincontent {
         overflow-x: hidden;
-    }
-
-    #restaurntWrapper {
-        margin-left: 0;
     }
 }

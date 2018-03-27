@@ -6,13 +6,13 @@
   "dependencies": {
     "grunt": "^1.0.2",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-cssmin": "^2.2.1",
     "grunt-contrib-imagemin": "^2.0.1",
     "grunt-contrib-uglify": "^3.3.0",
     "grunt-responsive-images": "^1.10.1",
     "grunt-uncss": "^0.8.1"
   },
   "devDependencies": {
+    "grunt-contrib-cssmin": "^2.2.1",
     "grunt-cwebp": "^2.1.1"
   },
   "scripts": {

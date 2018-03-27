@@ -75,6 +75,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-cwebp');
 
 
-    grunt.registerTask('default', ['cwebp']);
+    grunt.registerTask('default', ['cssmin']);
 
 };
