@@ -8,9 +8,8 @@ class DBHelper {
      * Change this to restaurants.json file location on your server.
      */
     static get DATABASE_URL() {
-        'http://localhost:1337/restaurants';
         const port = 1337; // Change this to your server port
-        return `http://localhost:${port}/restaurants`;
+        return `http://localhost:${port}/`;
     }
 
     /**
@@ -20,7 +19,7 @@ class DBHelper {
         var header = new Headers({
             'Content-Type': 'application/json'
         });
-        fetch(DBHelper.DATABASE_URL, {
+        fetch(DBHelper.DATABASE_URL + 'restaurants', {
             method: 'get',
             headers: header
         }).then(function (response) {
@@ -170,4 +169,21 @@ class DBHelper {
         return marker;
     }
 
+    static pushReview(callback) {
+        var header = new Headers({
+            'Content-Type': 'application/json',
+            'body': JSON.stringify({test: 'this is test'})
+        });
+        fetch(DBHelper.DATABASE_URL + 'reviews/', {
+            method: 'post',
+            headers: header
+        }).then(function (response) {
+            return response.json();
+        }).then(function (restaurants) {
+            callback(null, restaurants);
+        }).catch(function (error) {
+            callback((`Request failed. Returned status of ${error}`), null);
+        });
+
+    }
 }

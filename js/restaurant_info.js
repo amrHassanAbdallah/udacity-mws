@@ -167,3 +167,18 @@ getParameterByName = (name, url) => {
     return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
+
+/**
+ *Display form to insert the review
+ */
+createReviewForm = () => {
+    const reviewContainer = document.getElementById('reviews-list');
+    reviewContainer.innerHTML += `<label for="name"> your name:</label><input  name="name" type="text">
+<label for="number">rate</label>
+<input name="restaurant_id" type="hidden" value="2">
+
+<input type="number" max="5" min="0">
+<label for="comment">comment</label>
+<textarea name="comment"></textarea>
+`;
+};
