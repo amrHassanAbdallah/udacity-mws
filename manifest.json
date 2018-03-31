@@ -3,12 +3,12 @@
   "name": "This is an application to show all restaurant and there locations ,reviews",
   "icons": [
     {
-      "src": "61551_155090_food_restaurant_eat.png",
+      "src": "logo_mob_small.png",
       "type": "image/png",
       "sizes": "128x128"
     },
     {
-      "src": "61551_155091_food_restaurant_eat.png",
+      "src": "logo_mob_larg.png",
       "type": "image/png",
       "sizes": "512x512"
     }
