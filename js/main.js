@@ -131,6 +131,8 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
         ul.append(createRestaurantHTML(restaurant));
     });
     addMarkersToMap();
+    document.querySelector("iframe").title = "google map";
+
 };
 
 /**

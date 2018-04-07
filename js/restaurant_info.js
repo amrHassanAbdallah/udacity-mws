@@ -181,5 +181,23 @@ createReviewForm = () => {
 <input type="number" max="5" min="0">
 <label for="comment">comment</label>
 <textarea name="comment"></textarea>
+<button onclick="pushReview()">submit</button>
 `;
+};
+
+pushReview = () => {
+    var header = new Headers({
+        'Content-Type': 'application/json',
+    });
+    fetch(DBHelper.DATABASE_URL + 'reviews/', {
+        method: 'post',
+        headers: header
+    }).then(function (response) {
+        return response.json();
+    }).then(function (restaurants) {
+        console.log(null, restaurants);
+    }).catch(function (error) {
+        console.log((`Request failed. Returned status of ${error}`), null);
+    });
+
 };

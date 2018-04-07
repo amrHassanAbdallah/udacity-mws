@@ -74,7 +74,7 @@ module.exports = function (grunt) {
                     css: [
                         'css/style.min.css',
                     ],
-                    width: 440,
+                    width: 420,
                     height: 120
                 },
                 src: 'index.html',

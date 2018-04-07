@@ -2,12 +2,110 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/style.min.css">
   <meta name="theme-color" content="#317EFB"/>
   <link rel="manifest" href="/manifest.json">
   <title>Restaurant Reviews</title>
+  <style>
+    @charset "utf-8";
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10pt;
+      color: #333;
+      line-height: 1.5
+    }
+
+    body {
+      background-color: #fdfdfd;
+      margin: 0;
+      position: relative
+    }
+
+    a {
+      color: orange;
+      text-decoration: none
+    }
+
+    h1 {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0 0 20px
+    }
+
+    header, nav {
+      display: block
+    }
+
+    nav {
+      width: 100%;
+      background-color: #252831;
+      text-align: center
+    }
+
+    nav h1 {
+      padding: 26px;
+      margin: 0
+    }
+
+    nav h1 a {
+      color: #fff;
+      font-size: 14pt;
+      font-weight: 200;
+      letter-spacing: 10px;
+      text-transform: uppercase
+    }
+
+    @media only screen and (max-width: 425px) {
+      header {
+        width: 100vw !important
+      }
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10pt;
+      color: #333;
+      line-height: 1.5
+    }
+
+    body {
+      background-color: #fdfdfd;
+      margin: 0;
+      position: relative
+    }
+
+    a {
+      color: orange;
+      text-decoration: none
+    }
+
+    h1 {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0 0 20px
+    }
+
+    header, nav {
+      display: block
+    }
+
+    nav {
+      width: 100%;
+      background-color: #252831;
+      text-align: center
+    }
+
+    nav h1 {
+      padding: 26px;
+      margin: 0
+    }
+
+    nav h1 a {
+      color: #fff;
+      font-size: 14pt;
+      font-weight: 200;
+      letter-spacing: 10px;
+      text-transform: uppercase
+    }
+  </style>
 </head>
 
 
@@ -46,7 +144,7 @@
 
         <p id="restaurant-cuisine"></p>
         <p id="restaurant-address"></p>
-        <table id="restaurant-hours"></table>
+        <table id="restaurant-hours" role="presentation"></table>
       </section>
       <!-- end restaurant -->
       <!-- Beginning reviews -->
@@ -62,22 +160,55 @@
   </main>
   <!-- End main -->
 
+
   <!-- Beginning footer -->
   <footer id="footer" role="contentinfo">
-    Copyright (c) 2017 <a href="/" role="link" aria-label="home page link"><strong>Restaurant Reviews</strong></a> All
-    Rights Reserved.
+    Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
+
   <!-- End footer -->
 
-  <!-- Beginning scripts -->
-  <!-- Database helpers -->
-  <script type="text/javascript" src="js/dbhelper.js"></script>
-  <!-- common used functions across the pages-->
-  <script type="application/javascript" charset="utf-8" src="js/commonScript.js"></script>
-  <!-- Main javascript file -->
-  <script type="application/javascript" charset="utf-8" src="js/restaurant_info.js"></script>
-  <!-- Google Maps -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByhN2rV2AWzNEfzR8W3Z5iXDi3achf1PA&libraries=places&callback=initMap"></script>
+
+  <script>
+      window.onload = function () {
+          const scriptsToload = ["js/dbhelper.js", "js/commonScript.js", "js/restaurant_info.js"];
+
+          const body = document.getElementsByTagName("BODY")[0];
+
+          for (let i = 0; i < scriptsToload.length; i++) {
+              let tag = document.createElement("script");
+              tag.src = scriptsToload[i];
+              tag.type = "application/javascript";
+              tag.charset = "utf-8";
+              body.appendChild(tag);
+          }
+          let tag = document.createElement("script");
+          tag.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyByhN2rV2AWzNEfzR8W3Z5iXDi3achf1PA&libraries=places&callback=initMap";
+          body.appendChild(tag);
+
+          var head = document.getElementsByTagName('head')[0];
+
+          let tag2 = document.createElement("link");
+          let tag3 = document.createElement("link");
+
+          tag2.rel = 'stylesheet';
+          tag2.type = 'text/css';
+
+          tag3.rel = 'stylesheet';
+          tag3.type = 'text/css';
+
+          tag2.media = 'all';
+          tag3.media = 'all';
+
+
+          tag2.href = "css/style.min.css";
+          tag3.href = "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css";
+
+          head.appendChild(tag2);
+          head.appendChild(tag3);
+
+      }
+  </script>
 
 </body>
 

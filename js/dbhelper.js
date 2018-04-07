@@ -169,21 +169,5 @@ class DBHelper {
         return marker;
     }
 
-    static pushReview(callback) {
-        var header = new Headers({
-            'Content-Type': 'application/json',
-            'body': JSON.stringify({test: 'this is test'})
-        });
-        fetch(DBHelper.DATABASE_URL + 'reviews/', {
-            method: 'post',
-            headers: header
-        }).then(function (response) {
-            return response.json();
-        }).then(function (restaurants) {
-            callback(null, restaurants);
-        }).catch(function (error) {
-            callback((`Request failed. Returned status of ${error}`), null);
-        });
 
-    }
 }

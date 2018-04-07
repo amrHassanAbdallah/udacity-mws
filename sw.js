@@ -50,6 +50,10 @@ if (workbox) {
         new RegExp('^https://maps.googleapis.com/maps/api/js/(.*)'),
         workbox.strategies.cacheFirst(),
     );
+    workbox.routing.registerRoute(
+        /\.(?:js|css)$/,
+        workbox.strategies.staleWhileRevalidate(),
+    );
 } else {
     console.log(`Boo! Workbox didn't load 😬`);
 }
@@ -63,7 +67,6 @@ self.addEventListener('install', function (event) {
 
 //Deleting old worker
 self.addEventListener('activate', function (event) {
-    console.log(event, 'activate');
     event.waitUntil(
         caches.keys().then(function (cacheNames) {
             return Promise.all(
