@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-critical": "^1.1.0",
     "grunt-cwebp": "^2.1.1"
   },
   "scripts": {

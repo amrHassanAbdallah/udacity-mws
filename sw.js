@@ -1,4 +1,27 @@
 let staticCacheName = 'restaurant-static-v1';
+const filesToCache = [
+    '.',
+    'index.html',
+    'restaurant.html',
+    'css/styles.css',
+    'css/style.min.css',
+    'js/dbhelper.js',
+    'js/main.js',
+    'js/restaurant_info.js',
+    'index.html?launcher=true',
+    'http://localhost:1337/restaurants',
+    'img/1-640_medium.webp',
+    'img/2-640_medium.webp',
+    'img/3-640_medium.webp',
+    'img/4-640_medium.webp',
+    'img/5-640_medium.webp',
+    'img/6-640_medium.webp',
+    'img/7-640_medium.webp',
+    'img/8-640_medium.webp',
+    'img/9-640_medium.webp',
+    'img/10-640_medium.webp',
+
+];
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.0.0/workbox-sw.js');
 if (workbox) {
     console.log(`Yay! Workbox is loaded 🎉`);
@@ -33,19 +56,7 @@ if (workbox) {
 self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(staticCacheName).then(function (cache) {
-            return cache.addAll([
-                '/',
-                'index.html',
-                'restaurant.html',
-                'css/styles.css',
-                'css/style.min.css',
-                'js/dbhelper.js',
-                'js/main.js',
-                'js/restaurant_info.js',
-                'index.html?launcher=true',
-                'http://localhost:1337/restaurants',
-
-            ]);
+            return cache.addAll(filesToCache);
         })
     );
 });

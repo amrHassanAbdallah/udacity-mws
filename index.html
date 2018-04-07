@@ -2,16 +2,19 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/style.min.css">
     <meta name="theme-color" content="#317EFB"/>
   <link rel="manifest" href="/manifest.json">
   <title>Restaurant Reviews</title>
 </head>
 
 <body>
+<link rel="stylesheet" onload="if(media!='all')media='all'" href="css/style.min.css">
+<link rel="stylesheet" onload="if(media!='all')media='all'"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css"/>
 <header role="banner">
+
+
   <nav role="navigation" aria-label="Breadcrumb">
     <h1><a href="/" aria-label="Link restaurant reviews">Restaurant Reviews</a></h1>
     </nav>
@@ -38,13 +41,31 @@
     </section>
   </main>
 
-<script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByhN2rV2AWzNEfzR8W3Z5iXDi3achf1PA&libraries=places&callback=initMap"></script>
-  <!-- common used functions across the pages-->
-<script type="application/javascript" charset="utf-8" src="js/commonScript.js" async></script>
-  <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
+<!--
+<script async defer src=""></script>
+-->
 
-  <footer id="footer" role="contentinfo">
+<script>
+    window.onload = function () {
+        const scriptsToload = ["js/dbhelper.js", "js/commonScript.js", "js/main.js"];
+
+        const body = document.getElementsByTagName("BODY")[0];
+
+        for (let i = 0; i < scriptsToload.length; i++) {
+            let tag = document.createElement("script");
+            tag.src = scriptsToload[i];
+            tag.type = "application/javascript";
+            tag.charset = "utf-8";
+            body.appendChild(tag);
+        }
+        let tag = document.createElement("script");
+        tag.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyByhN2rV2AWzNEfzR8W3Z5iXDi3achf1PA&libraries=places&callback=initMap";
+        body.appendChild(tag);
+    }
+</script>
+
+
+<footer id="footer" role="contentinfo">
     Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
 

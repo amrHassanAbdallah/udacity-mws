@@ -66,6 +66,20 @@ module.exports = function (grunt) {
                     dest: 'img/'
                 }]
             }
+        },
+        critical: {
+            test: {
+                options: {
+                    base: './',
+                    css: [
+                        'css/style.min.css',
+                    ],
+                    width: 440,
+                    height: 120
+                },
+                src: 'index.html',
+                dest: 'test/generated/critical.css'
+            }
         }
     });
 
@@ -73,8 +87,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-cwebp');
+    grunt.loadNpmTasks('grunt-critical');
 
 
-    grunt.registerTask('default', ['cssmin']);
+    grunt.registerTask('default', ['critical']);
 
 };

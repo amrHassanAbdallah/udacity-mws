@@ -173,7 +173,8 @@ getParameterByName = (name, url) => {
  */
 createReviewForm = () => {
     const reviewContainer = document.getElementById('reviews-list');
-    reviewContainer.innerHTML += `<label for="name"> your name:</label><input  name="name" type="text">
+    reviewContainer.innerHTML += `
+<label for="name"> your name:</label><input  name="name" type="text">
 <label for="number">rate</label>
 <input name="restaurant_id" type="hidden" value="2">
 
