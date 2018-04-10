@@ -7,7 +7,6 @@
   <link rel="manifest" href="/manifest.json">
   <title>Restaurant Reviews</title>
     <style>
-        @charset "utf-8";
         body {
             font-family: Arial, Helvetica, sans-serif;
             font-size: 10pt;
@@ -139,6 +138,7 @@
     </section>
   </main>
 
+<script defer type="application/javascript" charset="utf-8" src="js/commonScript.js"></script>
 <!--
 <script async defer src=""></script>
 -->
@@ -147,42 +147,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css"/>-->
 <script>
     window.onload = function () {
-        const scriptsToload = ["js/dbhelper.js", "js/commonScript.js", "js/main.js"];
-
-        const body = document.getElementsByTagName("BODY")[0];
-
-        for (let i = 0; i < scriptsToload.length; i++) {
-            let tag = document.createElement("script");
-            tag.src = scriptsToload[i];
-            tag.type = "application/javascript";
-            tag.charset = "utf-8";
-            body.appendChild(tag);
-        }
-        let tag = document.createElement("script");
-        tag.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyByhN2rV2AWzNEfzR8W3Z5iXDi3achf1PA&libraries=places&callback=initMap";
-        body.appendChild(tag);
-
-        var head = document.getElementsByTagName('head')[0];
-
-        let tag2 = document.createElement("link");
-        let tag3 = document.createElement("link");
-
-        tag2.rel = 'stylesheet';
-        tag2.type = 'text/css';
-
-        tag3.rel = 'stylesheet';
-        tag3.type = 'text/css';
-
-        tag2.media = 'all';
-        tag3.media = 'all';
-
-
-        tag2.href = "css/style.min.css";
-        tag3.href = "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css";
-
-        head.appendChild(tag2);
-        head.appendChild(tag3);
-
+        const scriptsToload = ["js/dbhelper.js", "js/main.js", "https://maps.googleapis.com/maps/api/js?key=AIzaSyByhN2rV2AWzNEfzR8W3Z5iXDi3achf1PA&libraries=places&callback=initMap"];
+        const stylesToLoad = ["css/style.min.css", "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css"];
+        loadScriptAssets(scriptsToload);
+        loadStyleAssets(stylesToLoad);
     }
 </script>
 

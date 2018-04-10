@@ -90,6 +90,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-critical');
 
 
-    grunt.registerTask('default', ['critical']);
+    grunt.registerTask('default', ['cssmin']);
 
 };

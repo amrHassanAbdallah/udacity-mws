@@ -62,3 +62,30 @@ function setImageLocation(locationDB) {
 function setImageSrc(image, location) {
     image.src = location + '-640_medium.webp';
 }
+
+/**
+ loading page resource
+ */
+loadScriptAssets = (assetsUrls = []) => {
+    const body = document.getElementsByTagName("BODY")[0];
+
+    for (let i = 0; i < assetsUrls.length; i++) {
+        let tag = document.createElement("script");
+        tag.src = assetsUrls[i];
+        tag.type = "application/javascript";
+        tag.charset = "utf-8";
+        body.appendChild(tag);
+    }
+};
+
+loadStyleAssets = (assetsUrls) => {
+    const head = document.getElementsByTagName('head')[0];
+    for (let i = 0; i < assetsUrls.length; i++) {
+        let tag = document.createElement("link");
+        tag.href = assetsUrls[i];
+        tag.rel = 'stylesheet';
+        tag.type = 'text/css';
+        tag.media = 'all';
+        head.appendChild(tag);
+    }
+};
