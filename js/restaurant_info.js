@@ -68,6 +68,13 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
 
+    //setting the review form resturant id
+    document.getElementById("addReviewForm").setAttribute("data-id", restaurant.id);
+    document.getElementById("FavoriteButton").setAttribute("data-id", restaurant.id);
+
+    //setting favorite
+    document.getElementById('FavoriteButton').checked = restaurant.is_favorite;
+
   // fill operating hours
   if (restaurant.operating_hours) {
     fillRestaurantHoursHTML();
@@ -168,30 +175,21 @@ getParameterByName = (name, url) => {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 };
 
-/**
- *Display form to insert the review
- */
-createReviewForm = () => {
-    const reviewContainer = document.getElementById('reviews-list');
-    reviewContainer.innerHTML += `
-<label for="name"> your name:</label><input  name="name" type="text">
-<label for="number">rate</label>
-<input name="restaurant_id" type="hidden" value="2">
-
-<input type="number" max="5" min="0">
-<label for="comment">comment</label>
-<textarea name="comment"></textarea>
-<button onclick="pushReview()">submit</button>
-`;
+formData = () => {
+    let id = document.querySelector('#addReviewForm').dataset.id;
+    let rating = document.querySelector('#addReviewForm input#number').value;
+    let comment = document.querySelector('#addReviewForm #comment').value;
+    let name = document.querySelector('#addReviewForm input#name').value;
+    return {id: id, rating: rating, comments: comment, name: name};
 };
-
 pushReview = () => {
     var header = new Headers({
         'Content-Type': 'application/json',
     });
     fetch(DBHelper.DATABASE_URL + 'reviews/', {
         method: 'post',
-        headers: header
+        headers: header,
+        body: JSON.stringify(formData())
     }).then(function (response) {
         return response.json();
     }).then(function (restaurants) {
@@ -200,4 +198,22 @@ pushReview = () => {
         console.log((`Request failed. Returned status of ${error}`), null);
     });
 
+};
+markAsFavorite = () => {
+    let resturantId = document.getElementById("FavoriteButton").dataset.id;
+    let state = document.getElementById('FavoriteButton').checked;
+    var header = new Headers({
+        'Content-Type': 'application/json',
+    });
+    let url = `${DBHelper.DATABASE_URL}restaurants/${resturantId}/?is_favorite=${state}`;
+    fetch(url, {
+        method: 'put',
+        headers: header
+    }).then(function (response) {
+        return response.json();
+    }).then(function (restaurants) {
+        console.log(null, restaurants);
+    }).catch(function (error) {
+        console.log((`Request failed. Returned status of ${error}`), null);
+    });
 };
