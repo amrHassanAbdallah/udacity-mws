@@ -218,12 +218,12 @@
         <div class="form " id="addReviewForm">
           <h5>Add review</h5>
           <label for="name"> your name:</label>
-          <input id="name" name="name" type="text">
+            <input id="name" name="name" type="text" required>
           <label for="number">rate</label>
-          <input id="number" type="number" max="5" min="0">
+            <input id="number" type="number" max="5" min="0" required>
           <div class="form-group">
             <label for="comment">comment</label>
-            <textarea id="comment" style="display:block" name="comment" rows="4" cols="50"></textarea>
+              <textarea id="comment" style="display:block" name="comment" rows="4" cols="50" required></textarea>
           </div>
           <button style="margin-top: 10px" role="button" onclick="pushReview()">submit</button>
         </div>
@@ -247,7 +247,7 @@
   <!-- End footer -->
   <script>
       window.onload = function () {
-          const scriptsToload = ["js/dbhelper.js", "js/restaurant_info.js", "https://maps.googleapis.com/maps/api/js?key=AIzaSyByhN2rV2AWzNEfzR8W3Z5iXDi3achf1PA&libraries=places&callback=initMap"];
+          const scriptsToload = ["js/dbhelper.js", "https://maps.googleapis.com/maps/api/js?key=AIzaSyByhN2rV2AWzNEfzR8W3Z5iXDi3achf1PA&libraries=places&callback=initMap", "js/idb.js", "js/indexDB.js", "js/restaurant_info.js"];
           const stylesToLoad = ["css/styles.css", "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css"];
           loadScriptAssets(scriptsToload);
           loadStyleAssets(stylesToLoad);

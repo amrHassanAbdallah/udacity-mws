@@ -86,6 +86,8 @@ self.addEventListener('fetch', function (event) {
         caches.match(event.request).then(function (response) {
             if (response) return response;
             return fetch(event.request)
+        }).catch(function (err) {
+            console.log(err);
         })
     );
 });
@@ -94,4 +96,38 @@ self.addEventListener('message', function (event) {
     if (event.data.action === 'skipWaiting') {
         self.skipWaiting();
     }
+});
+
+
+self.addEventListener('sync', function (event) {
+    event.waitUntil(
+        store.outbox('readonly').then(function (outbox) {
+            return outbox.getAll();
+        }).then(function (messages) {
+            console.log(messages);
+            return Promise.all(messages.map(function (message) {
+                let url = message.url;
+                return fetch(url, {
+                    method: message.method,
+                    body: JSON.stringify(message.data),
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function (response) {
+                    return response.json();
+                }).then(function (data) {
+                    if (data.result === 'success') {
+                        return store.outbox('readwrite').then(function (outbox) {
+                            return outbox.delete(message.id);
+                        });
+                    }
+                });
+            }));
+            // send the messages
+        }).catch(function (err) {
+            console.error(err);
+        })
+    );
 });

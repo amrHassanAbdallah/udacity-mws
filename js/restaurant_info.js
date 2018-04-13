@@ -186,17 +186,24 @@ pushReview = () => {
     var header = new Headers({
         'Content-Type': 'application/json',
     });
-    fetch(DBHelper.DATABASE_URL + 'reviews/', {
+    var restaurant = formData();
+    let url = DBHelper.DATABASE_URL + 'reviews/';
+    fetch(url, {
         method: 'post',
         headers: header,
-        body: JSON.stringify(formData())
+        body: JSON.stringify(restaurant)
     }).then(function (response) {
         return response.json();
-    }).then(function (restaurants) {
-        console.log(null, restaurants);
+    }).then(function () {
+        clearInputs('addReviewForm');
     }).catch(function (error) {
+        store.outbox('readwrite').then(function (outbox) {
+            return outbox.put({data: restaurant, type: 'review', url: url, method: 'post'});
+        });
+        clearInputs('addReviewForm');
         console.log((`Request failed. Returned status of ${error}`), null);
     });
+
 
 };
 markAsFavorite = () => {
@@ -212,8 +219,19 @@ markAsFavorite = () => {
     }).then(function (response) {
         return response.json();
     }).then(function (restaurants) {
-        console.log(null, restaurants);
+        console.log(restaurants);
     }).catch(function (error) {
+
+        store.outbox('readwrite').then(function (outbox) {
+            return outbox.put({data: url, type: 'favorite', method: 'post', url: url});
+        });
         console.log((`Request failed. Returned status of ${error}`), null);
     });
+};
+
+clearInputs = (parentID) => {
+    let AllChildInputs = document.querySelectorAll(`#${parentID} input ,#${parentID} textarea`);
+    for (let i = 0; i < AllChildInputs.length; i++) {
+        AllChildInputs.value = "";
+    }
 };
