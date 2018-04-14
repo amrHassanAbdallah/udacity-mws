@@ -90,6 +90,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-critical');
 
 
-    grunt.registerTask('default', ['cssmin']);
+    grunt.registerTask('default', ['cssmin', 'responsive_images', 'imagemin', 'cwebp']);
 
 };
